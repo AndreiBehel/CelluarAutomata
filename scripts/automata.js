@@ -229,14 +229,6 @@ function getMousePos(canvas, evt) {
     };
 }
 
-function writeMessage(canvas, message) {
-    var context = canvas.getContext('2d');
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    context.font = '18pt Calibri';
-    context.fillStyle = 'black';
-    context.fillText(message, 10, 25);
-}
-
 canvas.addEventListener('click', function(evt) {
     let mousePos = getMousePos(canvas, evt);
     let x = Math.floor(mousePos.x / blockWidth);
@@ -259,4 +251,3 @@ canvas.addEventListener('contextmenu', function (evt) {
 }, false);
 
 drawField();
-
