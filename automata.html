@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .canvas {
+            margin: 0 auto;
+            width: 700px;
+            height:700px;
+        }
+    </style>
+</head>
+<body>
+<div class="canvas">
+    <canvas id="field" width="640" height="600"></canvas>
+    <br>
+    <input type="button" id="ok" value="OK" onclick="buttonOk();">
+    <input type="button" id="stop" value="Stop" onclick="buttonStop();">
+    <input type="button" id="clear" value="Clear" onclick="clearField();">
+    <input type="button" id="speedUp" value="+" onclick="speedUp();">
+    <input type="button" id="speedDown" value="-" onclick="speedDown();">
+</div>
+
+<script src="scripts/automata.js"></script>
+</body>
+</html>
