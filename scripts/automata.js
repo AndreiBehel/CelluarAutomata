@@ -8,15 +8,15 @@ let blockHeight = 20;
 let xBlocks = 30;
 let yBlocks = 30;
 
-let field = createMatrix(xBlocks, yBlocks);
+let field = createMatrix(xBlocks, yBlocks, 0);
 
 let updateInterval = 1000;
 let prevTime = 0;
 
-function createMatrix(x, y) {
+function createMatrix(x, y, defaultValue) {
     let matrix = new Array(y);
     for (let i = 0; i < y; i++) {
-        matrix[i] = new Array(x).fill(0);
+        matrix[i] = new Array(x).fill(defaultValue);
     }
     return matrix;
 }
@@ -59,30 +59,34 @@ function buttonOk() {
 function buttonStop() {
     cancelAnimationFrame(raf);
 }
-
-function clearField() {
+function fillField() {
     buttonStop();
-    field = createMatrix(xBlocks, yBlocks);
+    field = createMatrix(xBlocks, yBlocks, 1);
     drawField();
 }
 
-function speedUp() {
+function clearField() {
+    buttonStop();
+    field = createMatrix(xBlocks, yBlocks, 0);
+    drawField();
+}
+
+function speedDown() {
     if (updateInterval < 2000) {
         updateInterval += 100;
     }
 }
 
-function speedDown() {
+function speedUp() {
     if (updateInterval > 200) {
         updateInterval -= 100;
     }
 }
+
 function update(time = 0) {
     if (time - prevTime > updateInterval) {
         field = nextState();
         prevTime = time;
-        console.log(field.join('\n '));
-        console.log('#' + time + " ");
     }
     drawField();
 
@@ -90,7 +94,7 @@ function update(time = 0) {
 }
 
 function nextState() {
-    let nextMatrix = createMatrix(xBlocks, yBlocks);
+    let nextMatrix = createMatrix(xBlocks, yBlocks, 0);
     nextMatrix.forEach((row, rowIndex) => {
        row.forEach((element, colIndex) => {
            let value = 0;
@@ -238,6 +242,7 @@ canvas.addEventListener('click', function(evt) {
         drawField();
     }
 }, false);
+
 canvas.addEventListener('contextmenu', function (evt) {
     evt.preventDefault();
 
